@@ -13,7 +13,7 @@ def sort_dict_vals_from_reflist(dct, reflist):
         list: A sorted list of 2-tuples representing
             the dictionary (as found in `dict.items()`)
     """
-    items = dct.items()
+    items = list(dct.items())
     items = [d for d in items if d[1] in reflist]
     return sorted(items, key=lambda x: reflist.index(x[1]))
 
@@ -28,7 +28,7 @@ def sort_dict_keys_from_reflist(dct, reflist, omit=False):
         list: A sorted list of 2-tuples representing
             the dictionary (as found in `dict.items()`)
     """
-    items = dct.items()
+    items = list(dct.items())
     items = [d for d in items if d[0] in reflist]
     return sorted(items, key=lambda x: reflist.index(x[0]))
 
@@ -59,7 +59,7 @@ def filter_vals(obj, vals):
     if obj is None or not isinstance(vals, list):
         return obj
     newdict = {}
-    for k, v in obj.items():
+    for k, v in list(obj.items()):
         if v in vals:
             continue
         newdict[k] = v
@@ -78,7 +78,7 @@ def filter_keys(obj, keys):
     if obj is None or not isinstance(keys, list):
         return obj
     newdict = {}
-    for k, v in obj.items():
+    for k, v in list(obj.items()):
         if k in keys:
             continue
         newdict[k] = v

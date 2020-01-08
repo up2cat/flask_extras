@@ -71,7 +71,7 @@ def _get_viewfuncs():
         dict: The view functions, keyed by name.
     """
     return {name: func for name, func
-            in globals().iteritems() if _isview(name, func)}
+            in globals().items() if _isview(name, func)}
 
 
 def inject_error_views(app):
@@ -85,7 +85,7 @@ def inject_error_views(app):
         object: The modified Flask instance.
     """
     # See flask.pocoo.org/docs/0.10/api/#flask.Flask.errorhandler
-    for name, func in _get_viewfuncs().iteritems():
+    for name, func in _get_viewfuncs().items():
         code = name.replace('page_', '')
         app.register_error_handler(int(code), func)
     return app

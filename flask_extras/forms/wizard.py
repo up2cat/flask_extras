@@ -93,7 +93,7 @@ class MultiStepWizard(FlaskForm):
     def _setfields(self):
         """Dynamically set fields for this particular form step."""
         _, form = self.get_active()
-        for name, val in vars(form).items():
+        for name, val in list(vars(form).items()):
             if repr(val).startswith('<UnboundField'):
                 setattr(self, name, val)
 
@@ -106,7 +106,7 @@ class MultiStepWizard(FlaskForm):
             _alldata = session[self.name].get('data')
             if combine_fields:
                 combined = dict()
-                for formname, data in _alldata.items():
+                for formname, data in list(_alldata.items()):
                     if data is not None:
                         combined.update(data)
                 _alldata = combined
@@ -213,7 +213,7 @@ class MultiStepWizard(FlaskForm):
     @property
     def steps(self):
         """Get a list of the steps for iterating in views, html, etc."""
-        return range(1, self.total_steps + 1)
+        return list(range(1, self.total_steps + 1))
 
     def get_active(self):
         """Get active step."""

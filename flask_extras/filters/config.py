@@ -1,6 +1,6 @@
 """Provides configuration utilities for using the filters."""
 
-from __future__ import absolute_import
+
 
 from inspect import getmembers
 from inspect import isfunction
@@ -35,7 +35,7 @@ def _inject_filters(app, filters):
     Returns:
         app (object): The Flask application.
     """
-    for name, func in filters.iteritems():
+    for name, func in filters.items():
         app.jinja_env.filters[name] = func
     return app
 
@@ -68,7 +68,7 @@ def _inject_template_globals(app, funcs):
     Returns:
         app (object): The Flask application.
     """
-    for name, func in funcs.iteritems():
+    for name, func in funcs.items():
         app.add_template_global(name, func)
     return app
 

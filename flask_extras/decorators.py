@@ -42,7 +42,7 @@ def require_cookies(cookies=[]):
         def inner(*args, **kwargs):
             if cookies:
                 s1 = set(cookies)
-                s2 = set([k for k, v in request.cookies.items()])
+                s2 = set([k for k, v in list(request.cookies.items())])
                 matches = s1.intersection(s2)
                 diff = s1.difference(s2)
                 if len(s1) != len(matches):
@@ -72,14 +72,14 @@ def require_args(params=[]):
             if params:
                 if isinstance(params, list):
                     s1 = set(params)
-                    s2 = set([k for k, v in request.args.items()])
+                    s2 = set([k for k, v in list(request.args.items())])
                     matches = s1.intersection(s2)
                     diff = s1.difference(s2)
                     if len(s1) != len(matches):
                         raise ValueError(
                             'Missing required arg(s): {}'.format(list(diff)))
                 else:
-                    for param, val in params.items():
+                    for param, val in list(params.items()):
                         arg = request.args.get(param)
                         if arg is None:
                             raise ValueError(
@@ -106,7 +106,7 @@ def require_form(values=[]):
             if request.method == 'POST':
                 if values:
                     s1 = set(values)
-                    s2 = set([k for k, v in request.form.items()])
+                    s2 = set([k for k, v in list(request.form.items())])
                     matches = s1.intersection(s2)
                     diff = s1.difference(s2)
                     if len(s1) != len(matches):

@@ -242,7 +242,7 @@ def is_url(val):
     Returns:
         bool: True if the value is an http string, False if not.
     """
-    if isinstance(val, (str, unicode)):
+    if isinstance(val, str):
         return val.startswith('http://') or val.startswith('https://')
     return False
 
@@ -293,7 +293,7 @@ def make_list(val, coerce_numbers=True):
             Otherwise, return a list of characters.
     """
     if isinstance(val, dict):
-        return val.items()
+        return list(val.items())
     if isinstance(val, list):
         return val
     vals = list(str(val))

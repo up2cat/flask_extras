@@ -1,6 +1,6 @@
 """Filters for generating random data."""
 
-from __future__ import absolute_import
+
 
 
 def bs3_cols(num_entries):

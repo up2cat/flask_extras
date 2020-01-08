@@ -14,7 +14,7 @@ class TestGetFuncs:
 
     def test_get_module_funcs_notempty(self, client):
         """Test the return value functions length."""
-        assert len(config._get_funcs(config).items()) > 0
+        assert len(list(config._get_funcs(config).items())) > 0
 
 
 class TestInjectFilters:

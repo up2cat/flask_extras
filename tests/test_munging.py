@@ -120,35 +120,35 @@ class TestGroupBy:
         """Test function."""
         objs = [None for _ in range(4)]
         res = munging.group_by(objs, attr=None)
-        assert res.keys() == ['__unlabeled']
+        assert list(res.keys()) == ['__unlabeled']
         assert len(res['__unlabeled']) == 4
 
     def test_returns_no_objs_with_name(self):
         """Test function."""
         objs = [None for _ in range(4)]
         res = munging.group_by(objs, attr='invalid-attr')
-        assert res.keys() == ['__unlabeled']
+        assert list(res.keys()) == ['__unlabeled']
         assert len(res['__unlabeled']) == 4
 
     def test_returns_objs_nogroup_noname(self):
         """Test function."""
         objs = [self._get_obj(name) for name in ['foo1']]
         res = munging.group_by(objs, attr=None)
-        assert res.keys() == ['__unlabeled']
+        assert list(res.keys()) == ['__unlabeled']
         assert len(res['__unlabeled']) == 1
 
     def test_returns_objs_nogroup_fallback(self):
         """Test function."""
         objs = [self._get_obj(name) for name in ['foo1']]
         res = munging.group_by(objs, attr=None, fallback='somegroup')
-        assert res.keys() == ['somegroup']
+        assert list(res.keys()) == ['somegroup']
         assert len(res['somegroup']) == 1
 
     def test_returns_objs_nogroup(self):
         """Test function."""
         objs = [self._get_obj(None)]
         res = munging.group_by(objs, attr='name')
-        assert res.keys() == ['__unlabeled']
+        assert list(res.keys()) == ['__unlabeled']
         assert len(res['__unlabeled']) == 1
 
     def test_returns_objs_group_custom_group(self):
@@ -156,7 +156,7 @@ class TestGroupBy:
         objs = [self._get_obj(name) for name in ['foo1', 'foo2']]
         groups = [('group1', ('foo1', 'foo2'))]
         res = munging.group_by(objs, groups=groups, attr='name')
-        assert res.keys() == ['group1', '__unlabeled']
+        assert list(res.keys()) == ['group1', '__unlabeled']
         assert len(res['group1']) == 2
 
     def test_returns_objs_group_custom_group_with_one_unlabeled(self):
@@ -164,7 +164,7 @@ class TestGroupBy:
         objs = [self._get_obj(name) for name in ['foo1', 'foo2', 'foo3']]
         groups = [('group1', ('foo1', 'foo2'))]
         res = munging.group_by(objs, groups=groups, attr='name')
-        assert res.keys() == ['group1', '__unlabeled']
+        assert list(res.keys()) == ['group1', '__unlabeled']
         assert len(res['group1']) == 2
         assert len(res['__unlabeled']) == 1
 
@@ -178,9 +178,9 @@ class TestGroupBy:
             ('group3', ('foo7', 'foo8', 'foo9')),
         ]
         res = munging.group_by(objs, groups=groups, attr='name')
-        for key in res.keys():
+        for key in list(res.keys()):
             assert key in ['group1', 'group2', 'group3', '__unlabeled']
-        assert len(res.keys()) == 4
+        assert len(list(res.keys())) == 4
         assert len(res['group1']) == 3
         assert len(res['group2']) == 3
         assert len(res['group3']) == 3
@@ -196,7 +196,7 @@ class TestGroupBy:
             ('group3', ('foo7', 'foo9', 'foo8')),
         ]
         res = munging.group_by(objs, groups=groups, attr='name')
-        for key in res.keys():
+        for key in list(res.keys()):
             assert key in ['group1', 'group2', 'group3', '__unlabeled']
         for group in groups:
             label, items = group

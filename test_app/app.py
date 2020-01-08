@@ -162,7 +162,7 @@ def bootstrap():
         form=SomeForm(),
         form2=SomeForm2(),
         pagination=OrderedDict(
-            zip(['/somelink/{}'.format(i) for i in range(10)], range(10))
+            list(zip(['/somelink/{}'.format(i) for i in range(10)], list(range(10))))
         ),
     )
     return render_template('pages/bootstrap.html', **kwargs)

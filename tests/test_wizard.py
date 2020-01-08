@@ -19,7 +19,7 @@ from wtforms import (
 )
 from flask_extras.forms.wizard import MultiStepWizard
 
-from conftest import app
+from .conftest import app
 
 
 TESTING_SESSION_KEY = 'fakename'
