@@ -3,8 +3,8 @@
 from setuptools import setup
 
 requirements = [
-    'Flask-WTF==0.13',
-    'Flask==0.10.1',
+    'Flask-WTF',
+    'Flask',
     'python-dateutil',
     'netaddr',
 ]
@@ -35,7 +35,7 @@ setup(
     license='MIT',
     classifiers=[
         'Topic :: Software Development',
-        'Programming Language :: Python :: 2.7',
+        'Programming Language :: Python :: 3.7',
     ],
     install_requires=requirements,
     package_dir={'flask_extras': 'flask_extras'},
