@@ -353,7 +353,8 @@
                      submit=True,
                      uploads=True,
                      use_fieldset=True,
-                     wrap_inputs=False
+                     wrap_inputs=False,
+                     prev_step=False
     )
 -%}
 {#
@@ -491,6 +492,11 @@
 
         {% if submit %}
             {% if button_wrapper %}<div class="wtform-form button-wrapper">{% endif %}
+
+                {% if prev_step %}
+                    <a href="{{formobj.get_previos_step()}}" class="buttonPrevious buttonDisabled btn btn-primary">Previous</a>
+                {% endif %}
+
                 {# Add typical form submit button. #}
                 <button type="submit" class="{{ apply_classes(btn_classes) }}">{{ btn_text }}</button>
                 {# Add a reset field values button if specified. #}
